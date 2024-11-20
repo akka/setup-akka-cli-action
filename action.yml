@@ -5,8 +5,7 @@ branding:
   icon: zap
 inputs:
   token:
-    #TODO fix docs url
-    description: 'Akka refresh token, see: https://doc.akka.io/snapshots/akka-documentation/operations/integrating-cicd/index.html#create_a_service_token'
+    description: 'Akka refresh token, see: https://doc.akka.io/operations/integrating-cicd/index.html#create_a_service_token'
     required: true
   project-id:
     description: 'Akka project id, check your project id with `akka projects list`'
