@@ -1,7 +1,7 @@
 # Akka CLI for GitHub Actions
 
 This [JavaScript action](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action) for 
-GitHub workflows installs and configures the [Akka CLI](https://doc.akka.io/snapshots/akka-documentation/akka-cli/using-cli.html) tool. After running this action, the `akka` 
+GitHub workflows installs and configures the [Akka CLI](https://doc.akka.io/akka-cli/using-cli.html) tool. After running this action, the `akka` 
 command is 
 available in the workflow. 
 
@@ -53,7 +53,7 @@ We welcome all contributions! [Pull requests](https://github.com/akka/setup-akka
 
 ## Support
 
-This project is an [incubator](https://doc.akka.io/docs/akka-dependencies/current/support-terminology.html#incubating)
+This project is an [incubator](https://doc.akka.io/libraries/akka-dependencies/current/support-terminology.html#incubating)
 
 ## License
 
