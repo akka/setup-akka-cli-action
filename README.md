@@ -11,7 +11,7 @@ available in the workflow.
 
 The action takes two required parameters to authenticate and set the Akka project ID:
 
-* `token`: The Akka authentication token
+* `token`: The Akka authentication [token](https://doc.akka.io/snapshots/akka-documentation/operations/integrating-cicd/index.html#create_a_service_token)
 * `project-id`: The Akka project ID you're using
 
 ## Example Workflow
@@ -30,10 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Akka CLI
-        uses: akka/setup-akka-cli-action@v1
+        uses: akka/setup-akka-cli-action@v1.0.1
         with:
           token: ${{ secrets.AKKA_TOKEN }}
-          project-id: ${{ vars.AKKA_PROJECT_ID }}
+          project-id: ${{ secrets.AKKA_PROJECT_ID }}
       - name: List services
         run: akka service list
 ```
