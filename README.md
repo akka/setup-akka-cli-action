@@ -11,7 +11,7 @@ available in the workflow.
 
 The action takes two required parameters to authenticate and set the Akka project ID:
 
-* `token`: The Akka authentication [token](https://doc.akka.io/snapshots/akka-documentation/operations/integrating-cicd/index.html#create_a_service_token)
+* `token`: The Akka authentication [token](https://doc.akka.io/operations/integrating-cicd/index.html#create_a_service_token)
 * `project-id`: The Akka project ID you're using
 
 ## Example Workflow

@@ -3,4 +3,4 @@
 * Move major version tag `v1` to the latest release, e.g. `v1` to `v1.0.2`.
 * When bumping the major version (e.g. from `v1` to `v2`), update the following:
   * [README.md](README.md)
-  * [Akka Docs](https://doc.akka.io/snapshots/akka-documentation/operations/integrating-cicd/github-actions.html)
+  * [Akka Docs](https://doc.akka.io/operations/integrating-cicd/github-actions.html)
