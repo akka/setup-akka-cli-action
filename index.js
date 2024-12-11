@@ -20,8 +20,8 @@ async function run() {
         core.addPath(akkaBin);
 
         console.log(`Configuring akka CLI...`);
-        await exec.exec(`akka config set project ${projectId}`);
         await exec.exec(`akka config set refresh-token ${token}`);
+        await exec.exec(`akka config set project ${projectId}`);
         await exec.exec(`akka auth container-registry configure --disable-prompt`);
     } catch (error) {
         core.setFailed(error.message);
