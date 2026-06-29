@@ -6,6 +6,7 @@ async function run() {
     try {
         const token = core.getInput('token', { required: true });
         const projectId = core.getInput('project-id', { required: true });
+        const apiServerHost = core.getInput('api-server-host', { required: false });
         const runnerTempDir = process.env.RUNNER_TEMP;
         const akkaBin = runnerTempDir + "/akka-bin";
         console.log(`Downloading install-cli script`);
@@ -21,6 +22,9 @@ async function run() {
 
         console.log(`Configuring akka CLI...`);
         await exec.exec(`akka config set refresh-token ${token}`);
+        if (apiServerHost) {
+            await exec.exec(`akka config set api-server-host ${apiServerHost}`);
+        }
         await exec.exec(`akka config set project ${projectId}`);
         await exec.exec(`akka auth container-registry configure --disable-prompt`);
     } catch (error) {

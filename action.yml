@@ -10,6 +10,9 @@ inputs:
   project-id:
     description: 'Akka project id, check your project id with `akka projects list`'
     required: true
+  api-server-host:
+    description: 'Override the Akka API server host'
+    required: false
 runs:
   using: 'node24'
   main: 'dist/index.js'
