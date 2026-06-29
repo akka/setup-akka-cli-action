@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Akka CLI
-        uses: akka/setup-akka-cli-action@v1.0.2
+        uses: akka/setup-akka-cli-action@v1.0.3
         with:
           token: ${{ secrets.AKKA_TOKEN }}
           project-id: ${{ secrets.AKKA_PROJECT_ID }}
