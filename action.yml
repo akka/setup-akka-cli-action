@@ -5,13 +5,39 @@ branding:
   icon: zap
 inputs:
   token:
-    description: 'Akka refresh token, see: https://doc.akka.io/operations/integrating-cicd/index.html#create_a_service_token'
-    required: true
+    description: >
+      Akka refresh token, see: https://doc.akka.io/operations/integrating-cicd/index.html#create_a_service_token
+      Mutually exclusive with oauth-audience and oauth-provider-organization-id/oauth-provider-name (OAuth workload identity).
+    required: false
   project-id:
-    description: 'Akka project id, check your project id with `akka projects list`'
-    required: true
+    description: >
+      Akka project id, check your project id with `akka projects list`. Mutually exclusive with project.
+    required: false
+  project:
+    description: >
+      Akka project friendly name, check your project name with `akka projects list`. Mutually exclusive with project-id.
+    required: false
   api-server-host:
     description: 'Override the Akka API server host'
+    required: false
+  organization:
+    description: 'Akka organization to configure'
+    required: false
+  oauth-audience:
+    description: >
+      OAuth audience to request from the GitHub OIDC provider, used to authenticate via Akka workload identity
+      (no token required). Requires the workflow to have `permissions: id-token: write`.
+      Mutually exclusive with token and oauth-provider-organization-id/oauth-provider-name.
+    required: false
+  oauth-provider-organization-id:
+    description: >
+      Akka organization id (UUID), used together with oauth-provider-name to build the OAuth audience as
+      organizations/<oauth-provider-organization-id>/identityproviders/<oauth-provider-name> for workload identity authentication.
+      Requires the workflow to have `permissions: id-token: write`.
+      Mutually exclusive with token and oauth-audience.
+    required: false
+  oauth-provider-name:
+    description: 'Identity provider name, used together with oauth-provider-organization-id to build the OAuth audience.'
     required: false
 runs:
   using: 'node24'
