@@ -21,6 +21,7 @@ jobs:
           oauth-provider-organization-id: 1b413cae-993d-43e2-862b-0405e8439520
           oauth-provider-name: github
           api-server-host: api.kalix.st:443
+          project: 14d82931-3460-4e6f-a7ec-040881da20b1
 
       - name: Verify current login
         run: |

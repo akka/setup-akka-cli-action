@@ -11,11 +11,13 @@ inputs:
     required: false
   project-id:
     description: >
-      Akka project id, check your project id with `akka projects list`. Mutually exclusive with project.
+      Akka project id, check your project id with `akka projects list`. Exactly one of project-id or project
+      must be provided.
     required: false
   project:
     description: >
-      Akka project friendly name, check your project name with `akka projects list`. Mutually exclusive with project-id.
+      Akka project friendly name, check your project name with `akka projects list`. Exactly one of project-id
+      or project must be provided.
     required: false
   api-server-host:
     description: 'Override the Akka API server host'

@@ -22,10 +22,13 @@ or
 Using OAuth workload identity requires no secrets to be stored in GitHub — GitHub's OIDC provider issues a short-lived
 identity token that Akka's identity provider trusts. This requires the workflow to grant `permissions: id-token: write`.
 
+You also need to set exactly one of:
+
+* `project-id`: The Akka project ID you're using
+* `project`: The Akka project friendly name you're using
+
 Optional inputs:
 
-* `project-id`: The Akka project ID you're using (mutually exclusive with `project`)
-* `project`: The Akka project friendly name you're using (mutually exclusive with `project-id`)
 * `api-server-host`: Override the Akka API server host
 * `organization`: The Akka organization to configure
 

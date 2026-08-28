@@ -30727,6 +30727,9 @@ async function run() {
         if (projectId && project) {
             throw new Error('project-id cannot be used together with project');
         }
+        if (!projectId && !project) {
+            throw new Error('Either project-id or project must be provided');
+        }
 
         const runnerTempDir = process.env.RUNNER_TEMP;
         const akkaBin = runnerTempDir + "/akka-bin";
@@ -30755,9 +30758,7 @@ async function run() {
         if (apiServerHost) {
             core.exportVariable('AKKA_API_HOST', apiServerHost);
         }
-        if (projectId || project) {
-            core.exportVariable('AKKA_PROJECT', projectId || project);
-        }
+        core.exportVariable('AKKA_PROJECT', projectId || project);
         if (organization) {
             core.exportVariable('AKKA_ORGANIZATION', organization);
         }
