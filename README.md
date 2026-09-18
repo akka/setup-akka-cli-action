@@ -9,20 +9,22 @@ available in the workflow.
 
 ## Usage
 
-To authenticate, use either a refresh token, or (preferred) OAuth workload identity — these are mutually exclusive:
+To authenticate, use either OAuth workload identity (preferred) or a refresh token.
 
-* `token`: The Akka authentication [refresh token](https://doc.akka.io/operations/integrating-cicd/index.html#create_a_service_token)
+Using OAuth workload identity requires no secrets to be stored in GitHub — GitHub's OIDC provider issues a short-lived
+identity token that Akka's identity provider trusts. This requires the workflow to grant `permissions: id-token: write`.
 
-or
+Then, set the following parameters:
 
 * `oauth-audience`: The OAuth audience to request from GitHub's OIDC provider, or
 * `oauth-provider-organization-id` and `oauth-provider-name`: used together to build the audience as
   `organizations/<oauth-provider-organization-id>/identityproviders/<oauth-provider-name>`
 
-Using OAuth workload identity requires no secrets to be stored in GitHub — GitHub's OIDC provider issues a short-lived
-identity token that Akka's identity provider trusts. This requires the workflow to grant `permissions: id-token: write`.
+To use a refresh token, you need to set the following:
 
-You also need to set exactly one of:
+* `token`: The Akka authentication [refresh token](https://doc.akka.io/operations/integrating-cicd/index.html#create_a_service_token)
+
+For both workload identity, and tokens, you also need to set exactly one of:
 
 * `project-id`: The Akka project ID you're using
 * `project`: The Akka project friendly name you're using
@@ -31,30 +33,6 @@ Optional inputs:
 
 * `api-server-host`: Override the Akka API server host
 * `organization`: The Akka organization to configure
-
-## Example Workflow (refresh token)
-
-The below flow shows how to use this action to list all services in your project
-
-```yaml
-name: akka
-
-on: 
-  push:
-    branches: [ main ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install Akka CLI
-        uses: akka/setup-akka-cli-action@v1.0.3
-        with:
-          token: ${{ secrets.AKKA_TOKEN }}
-          project-id: ${{ secrets.AKKA_PROJECT_ID }}
-      - name: List services
-        run: akka service list
-```
 
 ## Example Workflow (OAuth workload identity)
 
@@ -75,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Akka CLI
-        uses: akka/setup-akka-cli-action@v1.0.3
+        uses: akka/setup-akka-cli-action@v1.1.0
         with:
           oauth-provider-organization-id: 00000000-0000-0000-0000-000000000000
           oauth-provider-name: github-actions
@@ -139,6 +117,30 @@ akka roles add-binding \
   --identity-provider-org <your-organization> \
   --workload-identity-claim repository=my-org/my-repo \
   --role developer
+```
+
+## Example Workflow (refresh token)
+
+The below flow shows how to use this action to list all services in your project
+
+```yaml
+name: akka
+
+on: 
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Akka CLI
+        uses: akka/setup-akka-cli-action@v1.1.0
+        with:
+          token: ${{ secrets.AKKA_TOKEN }}
+          project-id: ${{ secrets.AKKA_PROJECT_ID }}
+      - name: List services
+        run: akka service list
 ```
 
 ## Building and developing
